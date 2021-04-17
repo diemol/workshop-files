@@ -16,3 +16,6 @@ jobs:
         env:
           SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}        
+      - name: Removing containers and making sure Sauce Connect is stopped
+        run: docker-compose -f docker-compose_v3.yml down --volumes
+          
