@@ -1,1 +1,1 @@
-# automatic-broccoli
+# Run your tests anywhere - Workshop files
