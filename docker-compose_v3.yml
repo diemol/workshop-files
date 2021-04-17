@@ -1,0 +1,36 @@
+# How to run this? -> docker-compose -f docker-compose_v3.yml up --build --abort-on-container-exit
+# Clean up? -> docker-compose -f docker-compose_v3.yml down --volumes
+version: '3'
+
+services:
+  sauce_connect:
+    image: saucelabs/sauce-connect
+    environment:
+      - SAUCE_USERNAME=${SAUCE_USERNAME}
+      - SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}
+    command: --tunnel-identifier python-tests -f /tmp/sc.ready
+    volumes:
+      - sauce-connect-volume:/tmp
+
+  todo_app:
+    image: todo_app
+    build:
+      context: ./sample_web_app
+      dockerfile: ./Dockerfile.v2
+    ports:
+      - "3000:3000"
+
+  python_tests:
+    image: python_tests
+    build:
+      context: ./tests
+      dockerfile: ./Dockerfile.v2
+    environment:
+      - SAUCE_USERNAME=${SAUCE_USERNAME}
+      - SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}
+      - SUT_HOST=todo_app
+    volumes:
+      - sauce-connect-volume:/tmp
+
+volumes:
+  sauce-connect-volume:

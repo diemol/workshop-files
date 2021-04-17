@@ -1,0 +1,25 @@
+# # How to run this? -> docker-compose -f docker-compose_v1.yml up
+version: '3'
+
+services:
+  sauce_connect:
+    image: saucelabs/sauce-connect
+    environment:
+      - SAUCE_USERNAME=${SAUCE_USERNAME}
+      - SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}
+    command: --tunnel-identifier python-tests
+
+  todo_app:
+    image: todo_app
+    ports:
+      - "3000:3000"
+
+  python_tests:
+    image: python_tests
+    environment:
+      - SAUCE_USERNAME=${SAUCE_USERNAME}
+      - SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}
+      - SUT_HOST=todo_app
+    depends_on:
+      - sauce_connect
+            
