@@ -12,10 +12,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Build the docker-compose stack
-        run: docker-compose -f docker-compose_v3.yml up --abort-on-container-exit --build
+        run: docker-compose -f docker-compose_v3.yml up --abort-on-container-exit --build --timeout 30
         env:
           SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
           SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}        
-      - name: Removing containers and making sure Sauce Connect is stopped
-        run: docker-compose -f docker-compose_v3.yml down --volumes
           
