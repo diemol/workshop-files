@@ -21,6 +21,7 @@ services:
       - SAUCE_USERNAME=${SAUCE_USERNAME}
       - SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY}
       - SUT_HOST=todo_app
+      - SAUCE_TUNNEL_NAME=python-tests
     depends_on:
       - sauce_connect
             

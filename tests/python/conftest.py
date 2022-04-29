@@ -36,6 +36,7 @@ desktop_browsers = [
     firefox_options('macOS 11.00')]
 
 build_tag = f'run_your_tests_anywhere_{datetime.now().strftime("%d.%m.%Y-%H:%M")}'
+tunnel_name = environ.get('SAUCE_TUNNEL_NAME', 'python-tests')
 
 
 @pytest.fixture(params=desktop_browsers)
@@ -49,7 +50,7 @@ def desktop_web_driver(request):
     options = request.param
     options.set_capability('sauce:build', build_tag)
     options.set_capability('sauce:name', test_name)
-    options.set_capability('sauce:tunnelIdentifier', "python-tests")
+    options.set_capability('sauce:tunnelIdentifier', tunnel_name)
 
     browser = webdriver.Remote(
         command_executor=selenium_endpoint,
