@@ -3,6 +3,7 @@ name: Run your tests everywhere!
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
