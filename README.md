@@ -2,4 +2,7 @@
 
 Yay 🎉
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/diemol/workshop-files)
+To open in GitPod, replace your GitHub username in the link below,
+and open it in a new tab.
+
+https://gitpod.io/#https://github.com/<github-username>/workshop-files
