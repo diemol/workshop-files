@@ -117,7 +117,7 @@ function AddItemForm({ onNewItem }) {
 }
 
 function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
-    const { Container, Row, Col, Button } = ReactBootstrap;
+    const { Container, Row, Col, Button, Image } = ReactBootstrap;
 
     const toggleCompletion = () => {
         fetch(`/items/${item.id}`, {
@@ -181,6 +181,11 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval }) {
                     </Button>
                 </Col>
             </Row>
+            <Row className="pt-2">
+                <Col xs={12} className="text-center">
+                    <Image src={`https://source.unsplash.com/random/450x200?${item.name}`} thumbnail />
+                </Col>
+            </Row>            
         </Container>
     );
 }
