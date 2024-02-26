@@ -16,8 +16,10 @@ app.delete('/items', deleteItems);
 app.put('/items/:id', updateItem);
 app.delete('/items/:id', deleteItem);
 
+const appPort = process.env.PORT ? process.env.PORT : 3000;
+
 db.init().then(() => {
-    app.listen(3000, () => console.log('Listening on port 3000'));
+    app.listen(appPort, () => console.log(`Listening on port ${appPort}`));
 }).catch((err) => {
     console.error(err);
     process.exit(1);
